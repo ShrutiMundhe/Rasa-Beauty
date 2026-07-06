@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--blush);
+  color: var(--charcoal);
+  min-height: 100vh;
+}
+
+:root {
+  --terracotta: #4E6E58; /* Pista Green primary */
+  --terracotta-dark: #354D3D; /* Deep Forest Green */
+  --cream: #FFFFFF; /* Pure White */
+  --blush: #F7F6FA; /* Lavender White background */
+  --green: #4E6E58;
+  --sage: #E6EFEA; /* Soft Pista Green tint */
+  --charcoal: #1C281F; /* Dark Charcoal Green text */
+  --grey: #6E7E73; /* Muted Sage-Grey */
+  --border: #E3EAE5; /* Pista-Lavender border */
+  --accent-rose: #4E6E58;
+}
+
+/* Custom Profile Edit Modal Dialog */
+.profile-edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.profile-edit-modal {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+}
+
+.profile-edit-modal .modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-edit-modal .modal-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.profile-edit-modal .close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--grey);
+  line-height: 1;
+}
+
+.profile-edit-modal .modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.profile-edit-modal h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-edit-modal .modal-skin-types-grid,
+.profile-edit-modal .modal-hair-porosity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-edit-modal .modal-type-btn {
+  background-color: #F8F5F1;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.2s ease;
+  color: var(--charcoal);
+}
+
+.profile-edit-modal .modal-type-btn.active {
+  background-color: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #FFFFFF;
+}
+
+.profile-edit-modal .modal-type-btn strong {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.profile-edit-modal .modal-type-btn span {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.profile-edit-modal .modal-concerns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.profile-edit-modal .modal-concern-btn {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--charcoal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.profile-edit-modal .modal-concern-btn.active {
+  background-color: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #FFFFFF;
+}
+
+.profile-edit-modal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.profile-edit-modal .btn-modal-cancel {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  color: var(--charcoal);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.profile-edit-modal .btn-modal-save {
+  background-color: var(--terracotta);
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.profile-edit-modal .btn-modal-save:hover {
+  background-color: var(--terracotta-dark);
+}
