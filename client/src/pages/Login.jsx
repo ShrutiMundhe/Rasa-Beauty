@@ -12,13 +12,17 @@ function Login() {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const res = await fetch('http://localhost:5000/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form)
-            })
+    e.preventDefault();
+    // Use the environment variable for production, or localhost for local testing
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    
+    try {
+        const res = await fetch(`${API_URL}/api/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(form)
+        });
+        // ... rest of your code remains the same
             const data = await res.json()
             if (data.token) {
                 localStorage.setItem('token', data.token)

@@ -12,11 +12,13 @@ connectDB()
 // Production Security Middlewares
 app.use(helmet())
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? process.env.CLIENT_URL 
-    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: [
+    'https://rasa-beauty.vercel.app', // Add your actual Vercel domain here
+    'http://localhost:3000', 
+    'http://127.0.0.1:3000'
+  ],
   credentials: true
-}))
+}));
 app.use(express.json())
 
 // Feature-First Routes API Mapping
