@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './EyeCareProducts.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const EYE_CATEGORIES = [
   { id: 'Cream', name: 'Step 1: Eye Creams 🧴', desc: 'Soothe delicate under-eye skin, fade dark circles, and deflate puffiness' },
   { id: 'Serum', name: 'Step 2: Eye Serums ✨', desc: 'Peptide-rich active treatments to tighten sagging skin and target fine lines' }
@@ -87,7 +89,7 @@ function EyeCareProducts() {
       try {
         const lat = userCity.lat
         const lon = userCity.lng
-        let url = `http://localhost:5000/api/weather?city=${userCity.name}`
+        let url = `${API_BASE_URL}/api/weather?city=${userCity.name}`
         if (lat !== undefined && lon !== undefined) {
           url += `&lat=${lat}&lon=${lon}`
         }
@@ -104,7 +106,7 @@ function EyeCareProducts() {
 
       // Fetch recommended products
       const productsRes = await axios.post(
-        'http://localhost:5000/api/products/recommend',
+        `${API_BASE_URL}/api/products/recommend`,
         {
           skinType: profile.skinType,
           skinConcerns: profile.skinConcerns,
@@ -123,7 +125,7 @@ function EyeCareProducts() {
       setMamaTipLoading(true)
       try {
         const tipRes = await axios.post(
-          'http://localhost:5000/api/tips/generate',
+          `${API_BASE_URL}/api/tips/generate`,
           {
             city: userCity.name,
             skinType: profile.skinType,

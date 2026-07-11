@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Auth.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function Signup() {
   const navigate = useNavigate()
   const [step, setStep] = useState(1) // 1 = Signup Form, 2 = OTP Verification
@@ -79,7 +81,7 @@ function Signup() {
     setError('')
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5000/api/auth/send-otp', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -109,7 +111,7 @@ function Signup() {
     setError('')
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: form.email, otp: otpCode })
@@ -137,7 +139,7 @@ function Signup() {
     if (cooldown > 0) return
     setError('')
     try {
-      const res = await fetch('http://localhost:5000/api/auth/resend-otp', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/resend-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: form.email })

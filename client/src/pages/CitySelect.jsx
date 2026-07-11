@@ -5,6 +5,8 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import './CitySelect.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 // Fix leaflet marker icon issue in React
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
@@ -156,7 +158,7 @@ function CitySelect() {
         const body = JSON.parse(localStorage.getItem('bodyProfile') || '{}')
         const age = localStorage.getItem('userAge')
         
-        await fetch('http://localhost:5000/api/auth/profile', {
+        await fetch(`${API_BASE_URL}/api/auth/profile`, {
           method: 'PUT',
           headers: { 
             'Content-Type': 'application/json',

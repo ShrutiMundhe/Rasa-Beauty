@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './BodyCareProducts.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const BODY_CATEGORIES = [
   { id: 'Scrub', name: 'Step 1: Cleanse & Scrub 🧼', desc: 'Wash away sweat, exfoliate dead skin cells, and reverse tanning' },
   { id: 'Lotion', name: 'Step 2: Hydrate Lotions 🧴', desc: 'Lightweight hydration suitable for daily climate protection' },
@@ -76,7 +78,7 @@ function BodyCareProducts() {
       try {
         const lat = userCity.lat
         const lon = userCity.lng
-        let url = `http://localhost:5000/api/weather?city=${userCity.name}`
+        let url = `${API_BASE_URL}/api/weather?city=${userCity.name}`
         if (lat !== undefined && lon !== undefined) {
           url += `&lat=${lat}&lon=${lon}`
         }
@@ -93,7 +95,7 @@ function BodyCareProducts() {
 
       // Fetch recommended products
       const productsRes = await axios.post(
-        'http://localhost:5000/api/products/recommend',
+        `${API_BASE_URL}/api/products/recommend`,
         {
           bodyType: profile.bodyType,
           bodyConcerns: profile.bodyConcerns,
@@ -112,7 +114,7 @@ function BodyCareProducts() {
       setMamaTipLoading(true)
       try {
         const tipRes = await axios.post(
-          'http://localhost:5000/api/tips/generate',
+          `${API_BASE_URL}/api/tips/generate`,
           {
             city: userCity.name,
             bodyType: profile.bodyType,

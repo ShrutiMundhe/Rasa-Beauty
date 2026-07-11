@@ -4,6 +4,8 @@ import axios from 'axios'
 import './Profile.css'
 import './Home.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const skinTypes = [
   { id: 'normal', label: 'Normal', desc: 'Balanced, comfortable' },
   { id: 'dry', label: 'Dry', desc: 'Flaky, tight feeling' },
@@ -214,7 +216,7 @@ function Profile() {
     try {
       const token = localStorage.getItem('token')
       const response = await axios.put(
-        'http://localhost:5000/api/auth/profile',
+        `${API_BASE_URL}/api/auth/profile`,
         {
           name,
           city: selectedCity,

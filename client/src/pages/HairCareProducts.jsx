@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './HairCareProducts.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const HAIR_CATEGORIES = [
   { id: 'Oil', name: 'Step 1: Prep & Oil 🌿', desc: 'Nourish scalp roots, stimulate follicles, and prevent hair fall' },
   { id: 'Shampoo', name: 'Step 2: Cleanse 🧼', desc: 'Clear away scalp sweat, product buildup, and excess oil' },
@@ -85,7 +87,7 @@ function HairCareProducts() {
       try {
         const lat = userCity.lat
         const lon = userCity.lng
-        let url = `http://localhost:5000/api/weather?city=${userCity.name}`
+        let url = `${API_BASE_URL}/api/weather?city=${userCity.name}`
         if (lat !== undefined && lon !== undefined) {
           url += `&lat=${lat}&lon=${lon}`
         }
@@ -102,7 +104,7 @@ function HairCareProducts() {
 
       // Fetch recommended products
       const productsRes = await axios.post(
-        'http://localhost:5000/api/products/recommend',
+        `${API_BASE_URL}/api/products/recommend`,
         {
           hairType: profile.hairType,
           hairConcerns: profile.hairConcerns,
@@ -121,7 +123,7 @@ function HairCareProducts() {
       setMamaTipLoading(true)
       try {
         const tipRes = await axios.post(
-          'http://localhost:5000/api/tips/generate',
+          `${API_BASE_URL}/api/tips/generate`,
           {
             city: userCity.name,
             hairType: profile.hairType,

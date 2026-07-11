@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Checkout.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const COUPONS = [
   { code: 'RASA20', discount: 0.20, desc: 'Flat 20% off on your purchase' },
   { code: 'GLOW50', discount: 0.05, desc: 'Extra 5% off for glowing skin' },
@@ -94,7 +96,7 @@ function Checkout() {
 
     try {
       // 1. Create order on server
-      const response = await fetch('http://localhost:5000/api/payment/orders', {
+      const response = await fetch(`${API_BASE_URL}/api/payment/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: finalPrice })
@@ -132,7 +134,7 @@ function Checkout() {
         handler: async function (paymentResponse) {
           // Verify signature on backend
           try {
-            const verifyRes = await fetch('http://localhost:5000/api/payment/verify', {
+            const verifyRes = await fetch(`${API_BASE_URL}/api/payment/verify`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -174,7 +176,7 @@ function Checkout() {
   const handleMockPaymentSuccess = async () => {
     setShowMockPaymentModal(false)
     try {
-      const verifyRes = await fetch('http://localhost:5000/api/payment/verify', {
+      const verifyRes = await fetch(`${API_BASE_URL}/api/payment/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

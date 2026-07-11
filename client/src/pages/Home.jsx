@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './Home.css'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const CATEGORIES = [
   'All', 'Serum', 'Moisturiser', 'Sunscreen',
   'Cleanser', 'Mask', 'Toner', 'Eye Care', 'Lip Care',
@@ -114,7 +116,7 @@ function Home() {
       })
 
       const res = await axios.post(
-        'http://localhost:5000/api/tips/routine',
+        `${API_BASE_URL}/api/tips/routine`,
         {
           purchasedProducts,
           customProducts: customRoutineProducts,
@@ -198,7 +200,7 @@ function Home() {
       const cityName = city?.name || 'Mumbai'
       const lat = city?.lat
       const lon = city?.lng
-      let url = `http://localhost:5000/api/weather?city=${cityName}`
+      let url = `${API_BASE_URL}/api/weather?city=${cityName}`
       if (lat !== undefined && lon !== undefined) {
         url += `&lat=${lat}&lon=${lon}`
       }
@@ -225,7 +227,7 @@ function Home() {
     try {
       const token = localStorage.getItem('token')
       const res = await axios.post(
-        'http://localhost:5000/api/tips/generate',
+        `${API_BASE_URL}/api/tips/generate`,
         {
           city: city?.name || 'Mumbai',
           skinType: facialProfile?.skinType || 'normal',
@@ -250,7 +252,7 @@ function Home() {
       const token = localStorage.getItem('token')
       const age = localStorage.getItem('userAge')
       const res = await axios.post(
-        'http://localhost:5000/api/products/recommend',
+        `${API_BASE_URL}/api/products/recommend`,
         {
           skinType: facialProfile?.skinType || 'normal',
           skinConcerns: facialProfile?.skinConcerns || [],
