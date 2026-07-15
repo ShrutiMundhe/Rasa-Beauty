@@ -1,7 +1,7 @@
 const handleSubmit = async (e) => {
         e.preventDefault();
         // This constant now correctly matches the variable used in the fetch call below
-const API_BASE_URL = 'https://rasa-beauty.onrender.com';
+        const API_BASE_URL = 'https://rasa-beauty.onrender.com';
         
         try {
             // Updated to use API_BASE_URL instead of the undefined API_URL
