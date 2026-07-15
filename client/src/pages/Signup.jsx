@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Auth.css'
 
-const API_BASE_URL = 'https://rasa-beauty.onrender.com';
+// This will now correctly pull the URL from Vercel in production
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 function Signup() {
   const navigate = useNavigate()

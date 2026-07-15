@@ -5,7 +5,8 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import './CitySelect.css'
 
-const API_BASE_URL = 'https://rasa-beauty.onrender.com';
+// This will now correctly pull the URL from Vercel in production
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 // Fix leaflet marker icon issue in React
 delete L.Icon.Default.prototype._getIconUrl

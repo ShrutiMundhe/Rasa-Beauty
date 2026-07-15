@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Checkout.css'
 
-const API_BASE_URL = 'https://rasa-beauty.onrender.com';
+// This will now correctly pull the URL from Vercel in production
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 const COUPONS = [
   { code: 'RASA20', discount: 0.20, desc: 'Flat 20% off on your purchase' },

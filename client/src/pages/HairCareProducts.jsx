@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './HairCareProducts.css'
 
-const API_BASE_URL = 'https://rasa-beauty.onrender.com';
+// This will now correctly pull the URL from Vercel in production
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 const HAIR_CATEGORIES = [
   { id: 'Oil', name: 'Step 1: Prep & Oil 🌿', desc: 'Nourish scalp roots, stimulate follicles, and prevent hair fall' },
