@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './FacialCareProducts.css'
 
-// This will now correctly pull the URL from Vercel in production
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+// Support Vite, Create React App, and fall back to the deployed Render backend
+const API_BASE_URL = 
+  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) ||
+  process.env.REACT_APP_API_URL ||
+  'https://rasa-beauty.onrender.com';
 
 const FACIAL_CATEGORIES = [
   { id: 'Cleanser', name: 'Step 1: Cleanse 🧼', desc: 'Clear away impurities, sweat, and excess sebum' },

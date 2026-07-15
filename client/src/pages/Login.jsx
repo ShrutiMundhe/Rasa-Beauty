@@ -13,8 +13,11 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Using the Render URL directly (as you requested)
-        const API_BASE_URL = 'https://rasa-beauty.onrender.com';
+        // Support Vite, Create React App, and fall back to the deployed Render backend
+        const API_BASE_URL = 
+          (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) ||
+          process.env.REACT_APP_API_URL ||
+          'https://rasa-beauty.onrender.com';
         
         try {
             const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
