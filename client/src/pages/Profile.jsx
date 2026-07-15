@@ -4,7 +4,7 @@ import axios from 'axios'
 import './Profile.css'
 import './Home.css'
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_BASE_URL = 'https://rasa-beauty.onrender.com';
 
 const skinTypes = [
   { id: 'normal', label: 'Normal', desc: 'Balanced, comfortable' },

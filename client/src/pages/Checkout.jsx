@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Checkout.css'
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_BASE_URL = 'https://rasa-beauty.onrender.com';
 
 const COUPONS = [
   { code: 'RASA20', discount: 0.20, desc: 'Flat 20% off on your purchase' },

@@ -14,7 +14,7 @@ function Login() {
     const handleSubmit = async (e) => {
     e.preventDefault();
     // Use the environment variable for production, or localhost for local testing
-    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    const API_BASE_URL = 'https://rasa-beauty.onrender.com';
     
     try {
         const res = await fetch(`${API_URL}/api/auth/login`, {
